@@ -2,7 +2,7 @@
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8.
 Support us at:
-- Website: devsocial.io
+- Website: http://devsocial.io/
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
 
 
