@@ -1,16 +1,10 @@
-**Es6, Es7, Es8 Cheat Sheet******
-
-------------
-
+# Es6, Es7, Es8 Cheat Sheet
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8.
 Support us at:
 - Website: devsocial.io
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
 
-**Table of Contents**
-
-[TOC]
 
 ## Define variables (const & let)
 ### const 
@@ -88,7 +82,7 @@ console.log(sayHello)
 	//-->"HelloWorld"
 
 ```
-`let `should be used in `for` loop instead of `var`:
+`let` should be used in `for` loop instead of `var`:
 ```javascript
 //with var
 for (var i = 0; i < 3; i++) {
@@ -115,7 +109,9 @@ for (let i = 0; i < 3; i++) {
      //-->The number is 2
      //-->The number is 3
 ```
-##Template Strings
+
+## Template Strings
+
 You can reference variable, do math inside a template string:
 ```javascript
 let first = "Dev";
@@ -129,7 +125,7 @@ console.log(`Hello ${fist}${last} ${num1+num2}`);
 	 //-->"Hello Dev
 	//Social"
 ```
-##Arrow function
+## Arrow function
 > Arrow function is a new way of defining a function for cleaner code and is commonly used in callback function
 
 Define an arrow function with `return`:
