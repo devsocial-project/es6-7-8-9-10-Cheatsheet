@@ -1,3 +1,4 @@
+
 # Es6, Es7, Es8 Cheat Sheet
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8.
@@ -7,7 +8,7 @@ Support us at:
 
 
 ## Define variables (const & let)
-### const 
+### `const`:
 Define a constant variable:
 ```javascript
 const variableName = "value"
@@ -44,7 +45,7 @@ var x = 1
 console.log(x) 
 	//-->1
 ```
-### let 
+### `let`:
 Define a let variable:
 ```javascript
 let variableName = "value"
@@ -62,7 +63,7 @@ let variables cannot be redefined:
 let variableName = "other value"  
 	//-->SyntaxError
 ```
-**Hoisting - `var` vs `let`:**
+### Hoisting - `var` vs `let`:
 
 Variable defined by `var` get hoisted at the top
 ```javascript
@@ -245,7 +246,7 @@ console.log(b) //-->2
 console.log(c) //-->3
 ```
 ## Object Destructuring
-**Unpack an object**
+### Unpack an object:
 Variable with the same names as properties:
 ```javascript
 var person = {
@@ -274,7 +275,7 @@ console.log(newLast)
 	//-->"Social"
 
 ```
-**Object Destructuring Default Parameters:**
+### Object Destructuring Default Parameters:
 
 ```javascript
 function createPerson( { 
@@ -293,11 +294,11 @@ createPerson( { name: { first: "Daniel", last:"N"} });
 
 ```
 ## Class
-> Class in ES6 or above is a combination of** constructor functions, prototypes **in ES5 that make Object Oriented Programing in Javascript more clean and readable
+> Class in ES6 or above is a combination of constructor functions and prototypes in ES5 that make Object Oriented Programing in Javascript more clean and readable
 
 `class` will define a constant and `class` does not hoist.
 
-**Class Object**
+### Class Object
 
 Define a `class` object. this `class` will replace constructor function and prototypes in ES5:
 ```javascript
@@ -329,7 +330,7 @@ var newPerson = new Person("Dev","Social",7);
 newPerson.multiplyFavoriteNum(10) 
 	//-->70
 ```
-**Static**
+### Static
 
 `Static` is a function that only accessed by the `class` object. Other objects that are created from class object cannot access `static`:
 ```javascript
@@ -354,5 +355,92 @@ Person.callStatic()
 	//-->"static has bene called"
 
 ```
-**Inheritance**
-A class can inherit
+### Inheritance
+A class can inherit anotther class using `extends` key word and `super` keyword:
+
+```javascript
+class Vehicle{
+    constructor(make,model,year){
+        this.make=make;
+        this.model=model;
+        this.year=year;
+    }
+    start(){
+        return `${this.make} ${this.model} ENGINE START`;
+    }
+}
+
+class Car extends Vehicle{
+    constructor(make,model,year,numWheels){
+        super(make,model,year);   //inherit make,model,year from Vehicle
+        this.numWheels = 4;
+    }
+}
+var newCar = new Car("Honda","Civic",2019)
+newCar.numWheels
+	//-->4
+newCar.start()
+	//-->"Honda Civic ENGINE START"
+
+```
+## Import/Export
+
+**Named export:** You can export an object or objects in a .js file and then import that object to another .js file:
+
+*file1.js*
+```javascript
+export sayHello = "HelloWorld"
+export sayHi ="Hi"
+```
+*file2.js*
+```javascript
+import { sayHello, sayHi } from "./file1.js"
+console.log(sayHello)
+	//-->"Hello"
+console.log(sayHi)
+	//-->"Hi"
+```
+**Default export:** You can only export one default object in a .js file and then import that object in another .js file. However, you don't need curly brackets when importing:
+
+*file1.js*
+```javascript
+export default sayHello = "HelloWorld"
+```
+*file2.js*
+```javascript
+import { sayHello, sayHi } from "./file1.js"
+console.log(sayHello)
+	//-->"Hello"
+```
+**Exporting a Class:** Export/import are commonly use to export/import classes:
+
+*vehicle.js*
+```javascript
+class Vehicle{
+    constructor(make,model,year){
+        this.make=make;
+        this.model=model;
+        this.year=year;
+    }
+    start(){
+        return `${this.make} ${this.model} ENGINE START`;
+    }
+}
+export default Vehicle;
+```
+*car.js*
+```javascript
+import Vehicle from "./vehicle.js"
+
+class Car extends Vehicle{
+    constructor(make,model,year,numWheels){
+        super(make,model,year);   //inherit make,model,year from Vehicle
+        this.numWheels = 4;
+    }
+}
+var newCar = new Car("Honda","Civic",2019)
+newCar.numWheels
+	//-->4
+newCar.start()
+	//-->"Honda Civic ENGINE START"
+```
