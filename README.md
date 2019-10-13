@@ -277,15 +277,6 @@ smallest(1,2,3,4,5);
 ## Default Parameter
 Set default value to the parameter:
 ```javascript
-//without default parameter
-function sum(nums) {
-	let total = 0;
-	nums.forEach((d)=>(total+=d));
-	return total;
-};
-sum();
-	//-->TypeError
-
 //with default parameter
 function sum(nums =[]) {
 	let total = 0;
@@ -294,6 +285,15 @@ function sum(nums =[]) {
 };
 sum();
 	//-->0
+	
+//without default parameter
+function sum(nums) {
+	let total = 0;
+	nums.forEach((d)=>(total+=d));
+	return total;
+};
+sum();
+	//-->TypeError
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Array Destructuring
