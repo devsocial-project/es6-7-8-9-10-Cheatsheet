@@ -2,7 +2,8 @@
 
 # ES6, ES7, ES8, ES9 Cheat Sheet
 
-A complete, simple, easy to use cheat sheet for ES6, ES7, ES8. ES9
+A complete, simple, easy to use cheat sheet for ES6, ES7, ES8. ES9,ES10.
+
 Support us at:
 - Website: [http://devsocial.io/](http://devsocial.io/)
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
@@ -47,7 +48,7 @@ You can change, add value to a constant array  but you cannot reassign or redefi
 ```javascript
 const arrayName = [1,2,3,4]
 arrayName.push(5) 
-	//-->1,2,3,4,5]
+	//-->[1,2,3,4,5]
 const arrayName = [9,8,7,6] 
 	//-->SyntaxError
 ```
@@ -56,7 +57,7 @@ You can change, add value to a constant object  but you cannot reassign or redef
 const person = {name:"DevSocial",email:"support@devsocial.io",city:"L.A"}
 person.name ="OtherName" //change a property 
 person.location = "U.S" //add a new property
-person = {name:"Daniel",email:"daniel@devsocial.io",city:"L.A"} 
+person = {name:"Daniel",email:"daniel@devsocial.io",city:"L.A"} //reassign it 
 	//-->SyntaxError
 ```
 Constant variables exist in a block scope:
@@ -92,7 +93,8 @@ Variable defined by `var` get hoisted at the top
 ```javascript
 console.log(sayHello)
 	//-->undefined
-//variable sayHello is hoisted at the top before it was defined
+//variable sayHello is hoisted at the top before it was defined by var
+//This means that variable is there but with value of undefined
 var sayHello = "HelloWorld" 
 console.log(sayHello)
 	//-->"HelloWorld"
@@ -100,7 +102,7 @@ console.log(sayHello)
 Variable defined by `let` doesn't get hoisted at the top
 ```javascript
 console.log(sayHello)
-	 //-->ReferenceError
+	 //-->ReferenceError:sayHello is not defined
 let sayHello = "HelloWorld"
 console.log(sayHello)
 	//-->"HelloWorld"
@@ -116,7 +118,7 @@ for (var i = 0; i < 3; i++) {
  	}, 1000);
 };
 //after 1 sec
-	//-->The number is 5  (x3)   
+	//-->The number is 3  (x3)   
 //setTimeout reference i after when the for loop ends
 console.log(i)
 	//--> 3
@@ -130,9 +132,9 @@ for (let i = 0; i < 3; i++) {
  	}, 1000);
 }
 //after 1 sec
+	//-->The number is 0
 	//-->The number is 1
 	//-->The number is 2
-	//-->The number is 3
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Template Strings
@@ -144,9 +146,9 @@ let first = "Dev";
 let last = "Social";
 let num1 = 2;
 let num2 = 3;
-console.log(`Hello ${fist}${last} ${num1+num2}`); 
+console.log(`Hello ${first}${last} ${num1+num2}`); 
      //-->  "Hello DevSocial 5"
- console.log(`Hello ${fist}
+ console.log(`Hello ${first}
  ${last}`); 
 	 //-->"Hello Dev
 	//Social"
@@ -160,18 +162,18 @@ console.log(`Hello ${fist}${last} ${num1+num2}`);
  
 .padStart() will add a certain number of characters at the beginning of a string to fill up the required string length.
 ```javascript
-maxlength = 15;
-string = "DevSocial"
-console.log(string.padstart(maxlength,"a")
+let maxlength = 15;
+let string = "DevSocial"
+console.log(string.padStart(maxlength,"a"))
 	//-->"aaaaaaDevSocial"
 ```
 **`.padEnd()`**
 
 .padEnd() will add a certain number of character at the end of a string to fill up the required string length.
 ```javascript
-maxlength = 15;
-string = "DevSocial"
-console.log(string.padEnd(maxlength,"a")
+let maxlength = 15;
+let string = "DevSocial"
+console.log(string.padEnd(maxlength,"a"))
 	//-->"DevSocialaaaaaa"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
@@ -187,9 +189,11 @@ let functionName = (para1,para2) => {
 ```
 Define an arrow function without `return`:
 ```javascript
-let functionName = (para1, para2) => (para1 +para2) ;  
-//parentheses are optional, but advised 
-let functionName = para1, para2 => para1 +para2 ;  
+let functionName = (para1, para2) => (para1 + para2) ;  
+```
+If there is no parameter, you can just use parentheses:
+```javascript
+let functionName = () => (para1 + para2);  
 ```
 ```javascript
 //Same way before ES6
@@ -199,8 +203,10 @@ function (para1,para2){
 ```
 Arrow function is commonly used in callback:
 ```javascript
- let doubleThenFilter = arr => arr.map(value => (value *2) )
-                                  .filter(value => (value % 3 === 0));
+let myArr = [1,2,3]
+let doubleThenFilter = arr => arr.map((value) => (value * 2) )
+                                  .filter((value) => (value % 3 === 0));
+doubleThenFilter(myArr)
 ```
 ```javascript
 //Same way before ES6
@@ -216,15 +222,15 @@ function doubleThenFilter(arr){
 ## Spread Operator
 A spread operator would break down an array into values so that they can be easily used:
 ```javascript
-let nums = [4,5,6,7,8];
-let nums2 = [1,2,3,...nums,9,10];
+let nums = [4,5,6];
+let nums2 = [1,2,3,...nums,7,8];
 console.log(nums2);
-	//--> [1,2,3,4,5,6,7,8,9,10]
+	//--> [1,2,3,4,5,6,7,8]
 ```
 Spread operator is commonly used when a function doesn’t accept an array as a parameter:
 ```javascript
 function sumValues(a,b,c){
- 	console.log(arguments);  //print out the arguments of the function
+ 	console.log(arguments);  //print out an array of the arguments of the function
 return a+b+c;
 }
 let nums = [2,3,4];
@@ -368,12 +374,12 @@ myArr.flatMap(x => x.split(" "));
 Variable with the same names as properties:
 ```javascript
 var person = {
-     first: “Dev”;
-     last: “Social”;
+     first:"Dev",
+     last: "Social",
 }
 //define and assign value to variables with the same name as properties in the object
-var { fist, last } = person;
-console.log(fitst)
+var { first, last } = person;
+console.log(first)
 	//-->"Dev"
 console.log(last)
 	//-->"Social"
@@ -382,11 +388,11 @@ console.log(last)
 Variables with different names from properties:
 ```javascript
 var person = {
-     first: “Dev”;
-     last: “Social”;
+     first:"Dev",
+     last: "Social",
 }
 //define and assign values to variables with different names from properties in the object
-var { newFirst:first, newLast:last } = person;    
+var { first:newFirst, last:newLast} = person;    
 console.log(newFirst) 
 	//-->"Dev"
 console.log(newLast) 
@@ -394,21 +400,23 @@ console.log(newLast)
 
 ```
 ### Object Destructuring Default Parameters:
-
+You can assign default parameter value as a destructured object 
 ```javascript
-function createPerson( { 
+function createPerson({ 
 	name = {
-		first:"Dev",
-		last: "Social",
-		}, isFun = false ,
-	} = {} ) {
-		return [name.first, name.last, isGood);
-createPerson() 
-	//-->["Dev", "Social", false]
-createPerson( { isFun:true } ) 
-	//-->["Dev", "Social", true]
-createPerson( { name: { first: "Daniel", last:"N"} }); 
-	//--> ["Daniel", “N”, false]
+		first:"Javascript",
+		last: "ES6",
+		}, 
+	isFun = false,
+	} = {}){ //an empty object need to be assigned to the destructured object
+	return [name.first, name.last, isFun];
+}
+createPerson();
+	//-->["Javascript", "ES6", false]
+createPerson({ isFun:true });
+	//-->["Javascript", "ES6", true]
+createPerson({name:{ first: "Dev", last:"Social"}}); 
+	//--> ["Dev", “Social”, false]
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## New Useful Object Methods
@@ -438,9 +446,9 @@ console.log(obj1.name);
 //NOT A DEEP CLONE
 let obj1 =  {myArr:[1,2,3]}; 
 let obj2 = Object.assign({},obj1);
-obj2.myArr= [4,5,6];
+obj2.myArr.push(4)
 console.log(obj1.myArr);
-	//-->[4,5,6]
+	//-->[1,2,3,4]
 ```
 **`.entries() / .fromEntries()`**
 
@@ -457,8 +465,8 @@ console.log(entries);
 ```
 `.fromEntries()` would convert [key,value] pairs of an array into key:value pairs of an object :
 ```javascript
-const myObj2 = Object.entries(entries );
-console.log(originalObj );
+const myObj2 = Object.fromEntries(entries);
+console.log(myObj2);
 	//--> {key1:"value1", key2:"value2", key3:"value3"}
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
@@ -466,9 +474,9 @@ console.log(originalObj );
 ###  Object property as a variable
 You can set a property of an object with the value of a variable:
 ```javascript
-let somevar = “firstName”  
+let somevar = "firstName";  
 let person = {  
-[somevar]: “Dev”  
+[somevar]: "Dev"
 };
 console.log(person);
 	//-->{firstname:"Dev"}
@@ -499,6 +507,7 @@ var myObj ={
 ### Class fundamentals
 Define a `class` object. this `class` will replace constructor function and prototypes in ES5:
 ```javascript
+//ES6 and above
 class Person {
      constructor(firstName, lastName, favoriteNum){
           this.firstName = firstName;
@@ -510,21 +519,21 @@ class Person {
      }
 };
 let newPerson = new Person("Dev","Social",7);
-newPerson.multiplyFavoriteNum(10) 
+newPerson.multiplyFavoriteNum(10) ;
 	//-->70
 ```
 ```javascript
-//Same way in ES5
+//Same way before ES6
 function Person(firstName, lastName, favoriteNum) { //this is a constructor function
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.favoriteNum = favoriteNum;
 }
 Person.prototype.multiplyFavoriteNum = function(num){
-	return num*this.favoriteNum
+	return num*this.favoriteNum;
 }
 var newPerson = new Person("Dev","Social",7);
-newPerson.multiplyFavoriteNum(10) 
+newPerson.multiplyFavoriteNum(10) ;
 	//-->70
 ```
 ### Static
@@ -543,12 +552,12 @@ class Person {
      static callStatic(){
           return "static has been called"
      }
-}
+};
 
-var newPerson = new Person("Dev","Social","blue",7)
-newPerson.callStatic()
+var newPerson = new Person("Dev","Social","blue",7);
+newPerson.callStatic();
 	//-->ERROR
-Person.callStatic() 
+Person.callStatic() ;
 	//-->"static has bene called"
 
 ```
@@ -565,18 +574,18 @@ class Vehicle{
     start(){
         return `${this.make} ${this.model} ENGINE START`;
     }
-}
+};
 
 class Car extends Vehicle{
     constructor(make,model,year,numWheels){
         super(make,model,year);   //inherit make,model,year from Vehicle
         this.numWheels = 4;
     }
-}
-var newCar = new Car("Honda","Civic",2019)
-newCar.numWheels
+};
+var newCar = new Car("Honda","Civic",2019);
+newCar.numWheels;
 	//-->4
-newCar.start()
+newCar.start();
 	//-->"Honda Civic ENGINE START"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
@@ -586,39 +595,39 @@ newCar.start()
 
 *file1.js:*
 ```javascript
-export sayHello = "HelloWorld"
-export sayHi ="Hi"
+export sayHello = "HelloWorld";
+export sayHi ="Hi";
 ```
 *file2.js:*
 ```javascript
-import { sayHello, sayHi } from "./file1.js"
-console.log(sayHello)
+import { sayHello, sayHi } from "./file1.js";
+console.log(sayHello);
 	//-->"Hello"
-console.log(sayHi)
+console.log(sayHi);
 	//-->"Hi"
 ```
 You can rename the named imports
 ```javascript
 import { sayHello as Hello, sayHi as Hi } from "./file1.js"
-console.log(Hello)
+console.log(Hello);
 	//-->"Hello"
 ```
 You can import everything using `*`
 ```javascript
-import * from "./file1.js"
-console.log(sayHello)
+import * from "./file1.js";
+console.log(sayHello);
 	//-->"Hello"
 ```
-**Default export:** You can only export one default object in a .js file and then import that object in another .js file. However, you don't need curly brackets when importing:
+**Default export:** You can only export one default object in a `.js` file and then import that object in another `.js` file. However, you don't need curly brackets when importing:
 
 *file1.js:*
 ```javascript
-export default sayHello = "HelloWorld"
+export default sayHello = "HelloWorld";
 ```
 *file2.js:*
 ```javascript
-import sayHello from "./file1.js"
-console.log(sayHello)
+import sayHello from "./file1.js";
+console.log(sayHello);
 	//-->"Hello"
 ```
 **Exporting a Class:** Export/import are commonly use to export/import classes:
@@ -664,42 +673,44 @@ let myMap = new Map;
 ```
 Insert or set a key-value pair:
 ```javascript
-myMap.set(1,"something")  
-myMap.set(false,"something")  
-myMap.set([1,2,3],"something")  
-myMap.set({1:"abc"},"something")
+myMap.set(1,"something");
+myMap.set(false,"something");
+myMap.set([1,2,3],"something");
+myMap.set({1:"abc"},"something");
 ```
 Delete a key-value pair:
 ```javascript
-myMap.delete(false)
+myMap.delete(false);
 ```
 Check if a key exist:
 ```javascript
-myMap.has(1)
+myMap.has(1);
 ```
 Check a map size:
 ```javascript
-myMap.size()
+myMap.size;
 ```
 Get  a value:
 ```javascript
-myMap.get(1)
+myMap.get(1);
 ```
 Remove all key-value pairs:
 ```javascript
-myMap.clear()
+myMap.clear();
 ```
-Iterate a hash map with `for` `of`:
+`.keys()` would return a map iterator of keys
+`.values()` would return a map iterator
+You can iterate a map iterator using  `for` `of`:
 ```javascript
 for (let [key, value] of myMap) {
   console.log(key + ' = ' + value);
-}
+};
 for (let key of myMap.keys()) {
   console.log(key);
-}
+};
 for (let value of myMap.values()) {
   console.log(value);
-}
+};
 ```
 More about hash map can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
@@ -710,27 +721,27 @@ More about hash map can be found at: [https://developer.mozilla.org/en-US/docs/W
 
 Define a set:
 ```javascript
-const mySet = new  Set([3,1,1,2,2,4])  
+const mySet = new  Set([3,1,1,2,2,4]);
 //--> {3,1,2,4}
 ```
 Add a new value:
 ```javascript
-mySet.add(5)  
+mySet.add(5);
 //-->{3,1,2,4,5}
 ```
 Check if a value exist:
 ```javascript
-mySet.has(3)  
+mySet.has(3);
 //-> true
 ```
 Check a set’s size:
 ```javascript
-mySet.size  
+mySet.size;
 //->5
 ```
 Delete a value in a set:
 ```javascript
-mySet.delete(3)  
+mySet.delete(3);
 //-->true
 ```
 More about sets can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
@@ -753,10 +764,12 @@ Run a generator:
 ```javascript
 myGen.next() //.next() run the gen and return an object
 	//--> {value:"first", done:false}
-myGen.next().value	//.value return the next gen value
+myGen.next().value	//.value returns the next gen value
 	//--> "second"
-myGen.next().done //.done return the status of the gen
-	//--> true
+myGen.next().done //.done returns the status of the gen
+	//--> false
+myGen.next()
+	//-->{value:undefined, done:true}
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Promise
@@ -774,7 +787,7 @@ console.log("you want this executed third");
 //after 1 sec
 	//-->"you want this executed second"
 ```
-With the example above, since your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
+With the example above, your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
 ### Promise fundamentals
 A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
  - `resovle` means that the promise has been fulfilled, and `then` is executed. `resovle` is almost the same to the way `return` works
@@ -846,14 +859,14 @@ doHomework().then(function(message){
 Call multiple tasks at the same time, only trigger `then` or `catch` when all of the tasks have been fulfilled/rejected:
 ```javascript
 Promise.all([doHomework(),haveDinner(),takeShower()])
-		.then(function(){
+	.then(function(){
 			console.log("all finished");
 		});
 ```
 Call multiple tasks at the same time, trigger `then` or `catch` when one of the tasks has been fulfilled/rejected:
 ```javascript
 Promise.race([doHomework(),haveDinner(),takeShower()])
-		.then(function(){
+	.then(function(){
 			console.log("one finished");
 		});
 ```
@@ -912,3 +925,12 @@ try{
 	//--> "Here's the content, you gonna fake your age anyway"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+
+## License
+**Released under MIT License**
+Copyright (c) 2019 DevSocial.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
