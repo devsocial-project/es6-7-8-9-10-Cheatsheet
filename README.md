@@ -211,11 +211,11 @@ doubleThenFilter(myArr)
 ```javascript
 //Same way before ES6
 function doubleThenFilter(arr){
- 	return arr.map(function(value){
-      	return value *2;
- 	}).filter(function(value){
-      	return value % 3 === 0;
- 	})
+	return arr.map(function(value){
+		return value *2;
+	}).filter(function(value){
+		return value % 3 === 0;
+	})
 };
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
