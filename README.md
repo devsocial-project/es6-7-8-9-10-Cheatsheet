@@ -1,4 +1,5 @@
 
+
 # Es6, Es7, Es8 Cheat Sheet
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8.
@@ -6,7 +7,27 @@ Support us at:
 - Website: [http://devsocial.io/](http://devsocial.io/)
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
 
--[Define variable (const & let)](#define-variables-const--let)
+## Table of Contents
+
+ - [Define variables (const & let)](#define-variables-const--let)
+ - [Template Strings](#template-strings)
+ - [String.padStart() / String.padEnd()](#template-strings)
+ - [Arrow function](#arrow-function)
+ - [Spread Operator](#spread-operator)
+ - [Rest Operator](#rest-operator)
+ - [Default Parameter](#default-parameter)
+ - [Array Destructuring](#array-destructuring)
+ - [Object Destructuring](#object-destructuring)
+ - [Object Enhancements](#object-enhancements)
+ - [Class](#class)
+ - [Import/Export](#importexport)
+ - [Hash map](#hash-map)
+ - [Sets](#sets)
+ - [Generator](#generator)
+ - [Promise](#promise)
+ - [Async/await](#asyncawait)
+ - [Promise](#promise)
+ - [Promise](#promise)
 
 ## Define variables (const & let)
 ### `const`:
@@ -84,7 +105,7 @@ console.log(sayHello)
 	//-->"HelloWorld"
 
 ```
-`let` should be used in `for` loop instead of `var`:
+`let` should be used in `for` loop instead of `var` because variables defined by `var` will be leaked outside the `for` loop and will only reference the ending result of `i` if there is a `setTimeout` function:
 ```javascript
 //with var
 for (var i = 0; i < 3; i++) {
@@ -94,7 +115,7 @@ for (var i = 0; i < 3; i++) {
  	}, 1000);
 };
 //after 1 sec
-     //-->The number is 5  (x3)   
+	//-->The number is 5  (x3)   
 //setTimeout reference i after when the for loop ends
 console.log(i)
 	//--> 3
@@ -107,13 +128,15 @@ for (let i = 0; i < 3; i++) {
       	console.log("The number is " + i);
  	}, 1000);
 }
-     //-->The number is 1
-     //-->The number is 2
-     //-->The number is 3
+//after 1 sec
+	//-->The number is 1
+	//-->The number is 2
+	//-->The number is 3
 ```
 
 ## Template Strings
 
+Template string is a quick way for you to handle a string.
 You can reference variable, do math inside a template string:
 ```javascript
 let first = "Dev";
@@ -126,6 +149,28 @@ console.log(`Hello ${fist}${last} ${num1+num2}`);
  ${last}`); 
 	 //-->"Hello Dev
 	//Social"
+```
+## String.padStart() / String.padEnd()
+
+> .padStart(), .padEnd() are used to fill up a string to a certain number of characters
+
+ **`.padStart()`**
+ 
+.padStart() will add a certain number of characters at the beginning of a string to fill up the required string length.
+```javascript
+maxlength = 15;
+string = "DevSocial"
+console.log(string.padstart(maxlength,"a")
+	//-->"aaaaaaDevSocial"
+```
+**`.padEnd()`**
+
+.padEnd() will add a certain number of character at the end of a string to fill up the required string length.
+```javascript
+maxlength = 15;
+string = "DevSocial"
+console.log(string.padEnd(maxlength,"a")
+	//-->"DevSocialaaaaaa"
 ```
 ## Arrow function
 > Arrow function is a new way of defining a function for cleaner code and is commonly used in callback function
@@ -144,7 +189,7 @@ let functionName = (para1, para2) => (para1 +para2) ;
 let functionName = para1, para2 => para1 +para2 ;  
 ```
 ```javascript
-//Same way in ES5
+//Same way before ES6
 function (para1,para2){
      return para1+para2;
 }
@@ -152,10 +197,10 @@ function (para1,para2){
 Arrow function is commonly used in callback:
 ```javascript
  let doubleThenFilter = arr => arr.map(value => (value *2) )
-                                    .filter(value => (value % 3 === 0))
+                                  .filter(value => (value % 3 === 0))
 ```
 ```javascript
-//Same way in ES5
+//Same way before ES6
 function doubleThenFilter(arr){
  	return arr.map(function(value){
       	return value *2;
@@ -203,6 +248,7 @@ function printRest(a,b,...args){
 	console.log(args); //args is the array of arguments
 	console.log(...args); //...args are values that has been broken down
 }
+//args is just a name, you can name it with anything
 printRest(1,2,3,4,5)
 	//-->1
 	//-->2
@@ -292,15 +338,41 @@ createPerson( { isFun:true } )
 	//-->["Dev", "Social", true]
 createPerson( { name: { first: "Daniel", last:"N"} }); 
 	//--> ["Daniel", “N”, false]
+```
+## Object Enhancements
+###  Object property as a variable
+You can set a property of an object with the value of a variable:
+```javascript
+let somevar = “firstName”  
+let person = {  
+[somevar]: “Dev”  
+};
+console.log(person);
+	//-->{firstname:"Dev"}
+```
+### Object methods
+You can shorten the object methods inside an object:
+```javascript
+//ES6 and above
+let myObj ={
+	sayHello(){
+		console.log("Hello World");
+	}
+}
 
+//Before ES6
+var myObj ={
+	sayHello: function(){
+	console.log("Hello World");
+	}
+}
 ```
 ## Class
 > Class in ES6 or above is a combination of constructor functions and prototypes in ES5 that make Object Oriented Programing in Javascript more clean and readable
 
 `class` will define a constant and `class` does not hoist.
 
-### Class Object
-
+### Class fundamentals
 Define a `class` object. this `class` will replace constructor function and prototypes in ES5:
 ```javascript
 class Person {
@@ -388,12 +460,12 @@ newCar.start()
 
 **Named export:** You can export an object or objects in a .js file and then import that object to another .js file:
 
-*file1.js*
+*file1.js:*
 ```javascript
 export sayHello = "HelloWorld"
 export sayHi ="Hi"
 ```
-*file2.js*
+*file2.js:*
 ```javascript
 import { sayHello, sayHi } from "./file1.js"
 console.log(sayHello)
@@ -401,21 +473,33 @@ console.log(sayHello)
 console.log(sayHi)
 	//-->"Hi"
 ```
+You can rename the named imports
+```javascript
+import { sayHello as Hello, sayHi as Hi } from "./file1.js"
+console.log(Hello)
+	//-->"Hello"
+```
+You can import everything using `*`
+```javascript
+import * from "./file1.js"
+console.log(sayHello)
+	//-->"Hello"
+```
 **Default export:** You can only export one default object in a .js file and then import that object in another .js file. However, you don't need curly brackets when importing:
 
-*file1.js*
+*file1.js:*
 ```javascript
 export default sayHello = "HelloWorld"
 ```
-*file2.js*
+*file2.js:*
 ```javascript
-import { sayHello, sayHi } from "./file1.js"
+import sayHello from "./file1.js"
 console.log(sayHello)
 	//-->"Hello"
 ```
 **Exporting a Class:** Export/import are commonly use to export/import classes:
 
-*vehicle.js*
+*vehicle.js:*
 ```javascript
 class Vehicle{
     constructor(make,model,year){
@@ -429,7 +513,7 @@ class Vehicle{
 }
 export default Vehicle;
 ```
-*car.js*
+*car.js:*
 ```javascript
 import Vehicle from "./vehicle.js"
 
@@ -445,3 +529,227 @@ newCar.numWheels
 newCar.start()
 	//-->"Honda Civic ENGINE START"
 ```
+## Hash map
+
+> Hash map is an object that contains key-value pairs. Any value (including array, object, Boolean, number, function)  can be used as a key or a value. A Hash map stores the insertion orders.
+
+Define a new Hash Map:
+```javascript
+let myMap = new Map;
+```
+Insert or set a key-value pair:
+```javascript
+myMap.set(1,"something")  
+myMap.set(false,"something")  
+myMap.set([1,2,3],"something")  
+myMap.set({1:"abc"},"something")
+```
+Delete a key-value pair:
+```javascript
+myMap.delete(false)
+```
+Check if a key exist:
+```javascript
+myMap.has(1)
+```
+Check a map size:
+```javascript
+myMap.size()
+```
+Get  a value:
+```javascript
+myMap.get(1)
+```
+Remove all key-value pairs:
+```javascript
+myMap.clear()
+```
+Iterate a hash map with `for` `of`:
+```javascript
+for (let [key, value] of myMap) {
+  console.log(key + ' = ' + value);
+}
+for (let key of myMap.keys()) {
+  console.log(key);
+}
+for (let value of myMap.values()) {
+  console.log(value);
+}
+```
+More about hash map can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+## Sets
+
+> A set is a collection of unique values. A set is not an ordered abstract data structure, which means you cannot sort a set or order doesn't matter.
+
+Define a set:
+```javascript
+const mySet = new  Set([3,1,1,2,2,4])  
+//--> {3,1,2,4}
+```
+Add a new value:
+```javascript
+mySet.add(5)  
+//-->{3,1,2,4,5}
+```
+Check if a value exist:
+```javascript
+mySet.has(3)  
+//-> true
+```
+Check a set’s size:
+```javascript
+mySet.size  
+//->5
+```
+Delete a value in a set:
+```javascript
+mySet.delete(3)  
+//-->true
+```
+More about sets can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+## Generator
+
+> A Generator is like a function, however, it can be paused and continue
+
+Define a generator, `yield` in a generator is almost the same to `return`  :
+```javascript
+function* genValues(){
+	yield "first";
+	yield "second";
+	yield "third";
+};
+let myGen = genValues()
+```
+Run a generator:
+```javascript
+myGen.next() //.next() run the gen and return an object
+	//--> {value:"first", done:false}
+myGen.next().value	//.value return the next gen value
+	//--> "second"
+myGen.next().done //.done return the status of the gen
+	//--> true
+```
+## Promise
+
+> The **`Promise`** object represents the eventual completion (or failure) of an asynchronous call, and its resulting value.
+
+Promise is one of the fundamental concepts in Asynchronous JavaScript, Ajax, React,... 
+Asynchronous JavaScript is simply when your code is not sequentially executed at a time. For example, `setTimeout`, `setInterval`, ajax calls,... that take a period of time to be fulfilled.
+```javascript
+console.log("you want this executed first");
+setTimeout(()=>{console.log("you want this executed second")},1000);
+console.log("you want this executed third");
+	//-->"you want this executed first"
+	//-->"you want this executed third"
+//after 1 sec
+	//-->"you want this executed second"
+```
+With the example above, since your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
+### Promise fundamentals
+A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
+ - `resovle` means that the promise has been fulfilled, and `then` is executed. `resovle` is almost the same to the way `return` works
+ - `reject` means that the promise has not been fulfilled, and `catch` is executed. `reject` is almost the same to the way `return` works
+
+```javascript
+const promiseDoHomework = new Promise(function(resolve,reject) {
+	let isDone = false;
+	if (isDone){
+		setTimeout(function(){
+			resolve("is done");
+		},1000)
+	}else{
+		setTimeout(function(){
+			reject("is not done");
+		},1000)
+	}
+});
+promiseDoHomework.then(function(homeworkResult){
+	console.log("The homework " + homeworkResult);
+}).catch(function(homeworkResult){
+	console.log("The homework " + homeworkResult);
+})
+	//-->"The homework is not done"
+```
+
+### Promise Chain
+A chain of tasks can be sequentially executed. 
+```javascript
+const doHomework = function(){  
+	return new Promise(function(resolve,reject){
+		setTimeout(function(){
+			resolve("Do Homework, ");
+			console.log("Finished homework")
+		},1000);
+	})  
+};  
+const haveDinner = function(message){  
+	return new Promise(function(resolve,reject){ 
+		 setTimeout(function(){
+			resolve(message +"then "+ "have dinner, "); 
+			console.log("Finished dinner")
+		},1000);
+
+	})  
+};  
+const takeShower= function(message){  
+	return new Promise(function(resolve,reject){  
+		setTimeout(function(){
+			resolve(message + "then " + "take shower, "); 
+			console.log("Finished shower")
+		},1000);
+	})  
+};  
+  
+//call doHomework -> haveDinner -> takeShower
+doHomework().then(function(message){  
+	return haveDinner(message);  
+}).then(function(message){  
+	return takeShower(message);  
+}).then(function(message){  
+	console.log(message,"all finished ")  
+})  
+	//-->Finished homework
+	//-->Finished dinner
+	//-->Finished shower
+	//-->Do Homework, then have dinner, then take shower,  all finished 
+```
+Call multiple tasks at the same time, only trigger `then` or `catch` when all of the tasks have been fulfilled/rejected:
+```javascript
+Promise.all([doHomework(),haveDinner(),takeShower()])
+		.then(function(){
+			console.log("all finished");
+		});
+```
+Call multiple tasks at the same time, trigger `then` or `catch` when one of the tasks has been fulfilled/rejected:
+```javascript
+Promise.race([doHomework(),haveDinner(),takeShower()])
+		.then(function(){
+			console.log("one finished");
+		});
+```
+## Async/await
+### Async
+The `ansync` keyword that placed before a function makes sure that the function always return a promise:
+```javascript
+async function myFunc(){
+	return "this is a promise";
+}
+myFunc().then((val)=>{console.log(val)});
+	//-->"this is a promise"
+```
+### Await
+The `await` keyword is only used in the `async` function. The `await` keyword makes your code wait until the `Promise` inside the function has been fulfilled/rejected:
+```javascript
+async function myFunc(){
+	let myPromise = new Promise((resolve,reject)=>{
+		setTimeout(()=>{resolve("done!")},1000)
+	});
+	let result = myPromise.then((val)=>(val));
+	return result;
+}
+myFunc().then((result)=>{console.log(result)})
+
+```
+
+## Array
