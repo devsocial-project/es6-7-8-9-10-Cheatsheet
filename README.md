@@ -6,7 +6,7 @@ Support us at:
 - Website: [http://devsocial.io/](http://devsocial.io/)
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
 
--[Define variable (const & let](#define-variables-const--let)
+-[Define variable (const & let)](#define-variables-const--let)
 
 ## Define variables (const & let)
 ### `const`:
