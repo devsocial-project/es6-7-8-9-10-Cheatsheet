@@ -1,8 +1,8 @@
 
 
-# ES6, ES7, ES8, ES9, ES10 Cheat Sheet
+# ES6, ES7, ES8, ES9 Cheat Sheet
 
-A complete, simple, easy to use cheat sheet for ES6, ES7, ES8, ES9, ES10.
+A complete, simple, easy to use cheat sheet for ES6, ES7, ES8. ES9,ES10.
 
 Support us at:
 - Website: [http://devsocial.io/](http://devsocial.io/)
@@ -40,17 +40,17 @@ const variableName = "value"
 Constant variables can not be changed or reassign or redefine:
 ```javascript
 const variableName = "other value"  
-	//-->SyntaxError
+    //-->SyntaxError
 variableName = "other value" 
-	//-->SyntaxError
+    //-->SyntaxError
 ```
 You can change, add value to a constant array  but you cannot reassign or redefine it:
 ```javascript
 const arrayName = [1,2,3,4]
 arrayName.push(5) 
-	//-->[1,2,3,4,5]
+    //-->[1,2,3,4,5]
 const arrayName = [9,8,7,6] 
-	//-->SyntaxError
+    //-->SyntaxError
 ```
 You can change, add value to a constant object  but you cannot reassign or redefine it:
 ```javascript
@@ -58,16 +58,16 @@ const person = {name:"DevSocial",email:"support@devsocial.io",city:"L.A"}
 person.name ="OtherName" //change a property 
 person.location = "U.S" //add a new property
 person = {name:"Daniel",email:"daniel@devsocial.io",city:"L.A"} //reassign it 
-	//-->SyntaxError
+    //-->SyntaxError
 ```
 Constant variables exist in a block scope:
 ```javascript
 var x = 1
 { //this is a block scope
-	const x = 2
+    const x = 2
 }
 console.log(x) 
-	//-->1
+    //-->1
 ```
 ### `let`:
 Define a let variable:
@@ -78,63 +78,63 @@ let variables exist in a block scope:
 ```javascript
 var x = 1
 { //this is a block scope
-	let x = 2
+    let x = 2
 }
 console.log(x) //-->1
 ```
 let variables cannot be redefined:
 ```javascript
 let variableName = "other value"  
-	//-->SyntaxError
+    //-->SyntaxError
 ```
 ### Hoisting - `var` vs `let`:
 
 Variable defined by `var` get hoisted at the top
 ```javascript
 console.log(sayHello)
-	//-->undefined
+    //-->undefined
 //variable sayHello is hoisted at the top before it was defined by var
 //This means that variable is there but with value of undefined
 var sayHello = "HelloWorld" 
 console.log(sayHello)
-	//-->"HelloWorld"
+    //-->"HelloWorld"
 ```
 Variable defined by `let` doesn't get hoisted at the top
 ```javascript
 console.log(sayHello)
-	 //-->ReferenceError:sayHello is not defined
+     //-->ReferenceError:sayHello is not defined
 let sayHello = "HelloWorld"
 console.log(sayHello)
-	//-->"HelloWorld"
+    //-->"HelloWorld"
 
 ```
 `let` should be used in `for` loop instead of `var` because variables defined by `var` will be leaked outside the `for` loop and will only reference the ending result of `i` if there is a `setTimeout` function:
 ```javascript
 //with var
 for (var i = 0; i < 3; i++) {
- 	console.log(i);
- 	setTimeout(function(){
-      	console.log("The number is " + i);
- 	}, 1000);
+     console.log(i);
+     setTimeout(function(){
+          console.log("The number is " + i);
+     }, 1000);
 };
 //after 1 sec
-	//-->The number is 3  (x3)   
+    //-->The number is 3  (x3)   
 //setTimeout reference i after when the for loop ends
 console.log(i)
-	//--> 3
+    //--> 3
 //i is leaked outside the for loop
 ```
 ```javascript
 //with let
 for (let i = 0; i < 3; i++) {
- 	setTimeout(function(){
-      	console.log("The number is " + i);
- 	}, 1000);
+     setTimeout(function(){
+          console.log("The number is " + i);
+     }, 1000);
 }
 //after 1 sec
-	//-->The number is 0
-	//-->The number is 1
-	//-->The number is 2
+    //-->The number is 0
+    //-->The number is 1
+    //-->The number is 2
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Template Strings
@@ -150,8 +150,8 @@ console.log(`Hello ${first}${last} ${num1+num2}`);
      //-->  "Hello DevSocial 5"
  console.log(`Hello ${first}
  ${last}`); 
-	 //-->"Hello Dev
-	//Social"
+     //-->"Hello Dev
+    //Social"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## String.padStart() / String.padEnd()
@@ -165,7 +165,7 @@ console.log(`Hello ${first}${last} ${num1+num2}`);
 let maxlength = 15;
 let string = "DevSocial"
 console.log(string.padStart(maxlength,"a"))
-	//-->"aaaaaaDevSocial"
+    //-->"aaaaaaDevSocial"
 ```
 **`.padEnd()`**
 
@@ -174,7 +174,7 @@ console.log(string.padStart(maxlength,"a"))
 let maxlength = 15;
 let string = "DevSocial"
 console.log(string.padEnd(maxlength,"a"))
-	//-->"DevSocialaaaaaa"
+    //-->"DevSocialaaaaaa"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Arrow function
@@ -211,11 +211,11 @@ doubleThenFilter(myArr)
 ```javascript
 //Same way before ES6
 function doubleThenFilter(arr){
-	return arr.map(function(value){
-		return value *2;
-	}).filter(function(value){
-		return value % 3 === 0;
-	})
+    return arr.map(function(value){
+        return value *2;
+    }).filter(function(value){
+        return value % 3 === 0;
+    })
 };
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
@@ -225,75 +225,75 @@ A spread operator would break down an array into values so that they can be easi
 let nums = [4,5,6];
 let nums2 = [1,2,3,...nums,7,8];
 console.log(nums2);
-	//--> [1,2,3,4,5,6,7,8]
+    //--> [1,2,3,4,5,6,7,8]
 ```
 Spread operator is commonly used when a function doesn’t accept an array as a parameter:
 ```javascript
 function sumValues(a,b,c){
- 	console.log(arguments);  //print out an array of the arguments of the function
+     console.log(arguments);  //print out an array of the arguments of the function
 return a+b+c;
 }
 let nums = [2,3,4];
 sumValues(...nums); //values 2,3,4 of nums array has been passed to a,b,c parameters
-	//-->[2,3,4]
-	//-->9
+    //-->[2,3,4]
+    //-->9
 sumValues(5,5,...nums); //value 2 of nums array has been passed to c parameter
-	//-->[5,5,2,3,4]
-	//-->12
+    //-->[5,5,2,3,4]
+    //-->12
 ```
 ```javascript
 //Another example
 let nums = [1,2,3,4];
 Math.min(nums);
-	//--> NaN
+    //--> NaN
 Math.min(...nums);
-	//-->1
+    //-->1
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Rest Operator
 Rest operator is commonly used in a function when you don’t know the number of input arguments passed into the function:
 ```javascript
 function printRest(a,b,...args){
-	console.log(a);
-	console.log(b);
-	console.log(args); //args is the array of arguments
-	console.log(...args); //...args are values that has been broken down
+    console.log(a);
+    console.log(b);
+    console.log(args); //args is the array of arguments
+    console.log(...args); //...args are values that has been broken down
 }
 //args is just a name, you can name it with anything
 printRest(1,2,3,4,5);
-	//-->1
-	//-->2
-	//-->[3,4,5]
-	//-->3 4 5
+    //-->1
+    //-->2
+    //-->[3,4,5]
+    //-->3 4 5
 ```
 ```javascript
 function smallest(...args){
      return "Smallest number is " + Math.min(...args);
 }
 smallest(1,2,3,4,5);
-	//--> "Smallest number is 1"
+    //--> "Smallest number is 1"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Default Parameter
 Set default value to the parameter:
 ```javascript
-//with default parameter
-function sum(nums =[]) {
-	let total = 0;
-	nums.forEach((d)=>(total+=d));
-	return total;
-};
-sum();
-	//-->0
-	
 //without default parameter
 function sum(nums) {
-	let total = 0;
-	nums.forEach((d)=>(total+=d));
-	return total;
+    let total = 0;
+    nums.forEach((d)=>(total+=d));
+    return total;
 };
 sum();
-	//-->TypeError
+    //-->TypeError
+
+//with default parameter
+function sum(nums =[]) {
+    let total = 0;
+    nums.forEach((d)=>(total+=d));
+    return total;
+};
+sum();
+    //-->0
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Array Destructuring
@@ -316,7 +316,7 @@ Convert array-like-object into an array.  An array-like-object is an object but 
 let myDivs = document.querySelector("div"); //This will return an array-like-object
 let mySet = new Set([1,1,2,2,3,3]); //Set is also an array-like object
 let arrConvert = Array.from(mySet);
-	//--> [1,2,3]
+    //--> [1,2,3]
 ```
 
 **`.includes()`**
@@ -325,7 +325,7 @@ Check if an item exist in an array, return Boolean:
 ```javascript
 let myArr = [1,2,3,4,5];
 console.log(myArr.includes(2));
-	//-->true
+    //-->true
 ```
 **`.flat()`** *(Not yet supported by Edge)*
 
@@ -333,18 +333,18 @@ Flatten a nested array, remove empty spots; then return a new array:
 ```javascript
 let myArr = [1,2,,[3,4]];
 myArr.flat();
-	//-->[1,2,3,4]
+    //-->[1,2,3,4]
 let myArr2 = [1,2,[3,4,[5,6]]];
 myArr2.flat();
-	//-->[1,2,3,4,[5,6]];
+    //-->[1,2,3,4,[5,6]];
 ```
 You can assign the depth level of `.flat()`:
 ```javascript
 let myArr2 = [1,2,[3,4,[5,6]]];
 myArr2.flat(2);
-	//-->[1,2,3,4,5,6];
+    //-->[1,2,3,4,5,6];
 myArr2.flat(Infinity); //Infinity would flatten until there's no nested array
-	//-->[1,2,3,4,5,6]
+    //-->[1,2,3,4,5,6]
 ```
 **`.flatMap()`** *(Not yet supported by Edge)*
 
@@ -380,9 +380,9 @@ var person = {
 //define and assign value to variables with the same name as properties in the object
 var { first, last } = person;
 console.log(first)
-	//-->"Dev"
+    //-->"Dev"
 console.log(last)
-	//-->"Social"
+    //-->"Social"
 
 ```
 Variables with different names from properties:
@@ -394,29 +394,29 @@ var person = {
 //define and assign values to variables with different names from properties in the object
 var { first:newFirst, last:newLast} = person;    
 console.log(newFirst) 
-	//-->"Dev"
+    //-->"Dev"
 console.log(newLast) 
-	//-->"Social"
+    //-->"Social"
 
 ```
 ### Object Destructuring Default Parameters:
 You can assign default parameter value as a destructured object 
 ```javascript
 function createPerson({ 
-	name = {
-		first:"Javascript",
-		last: "ES6",
-		}, 
-	isFun = false,
-	} = {}){ //an empty object need to be assigned to the destructured object
-	return [name.first, name.last, isFun];
+    name = {
+        first:"Javascript",
+        last: "ES6",
+        }, 
+    isFun = false,
+    } = {}){ //an empty object need to be assigned to the destructured object
+    return [name.first, name.last, isFun];
 }
 createPerson();
-	//-->["Javascript", "ES6", false]
+    //-->["Javascript", "ES6", false]
 createPerson({ isFun:true });
-	//-->["Javascript", "ES6", true]
+    //-->["Javascript", "ES6", true]
 createPerson({name:{ first: "Dev", last:"Social"}}); 
-	//--> ["Dev", “Social”, false]
+    //--> ["Dev", “Social”, false]
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## New Useful Object Methods
@@ -431,7 +431,7 @@ let obj1 = {name:"DevSocial"};
 let obj2 = obj1; // this will not clone obj1, but only assign a reference to obj1
 obj2.name = "some text";
 console.log(obj1.name);
-	//-->"some text"
+    //-->"some text"
 ```
 ```javascript
 //BETTER WAY OF CLONING AN OBJECT
@@ -439,7 +439,7 @@ let obj1 =  {name:"DevSocial"};
 let obj2 = Object.assign({},obj1);
 obj2.name = "some text";
 console.log(obj1.name);
-	//-->"DevSocial"
+    //-->"DevSocial"
 ```
 `Object.assign()` however is not a deep clone. If the object's property holds a value of an array, that array still have a reference in the cloned object:
 ```javascript
@@ -448,26 +448,26 @@ let obj1 =  {myArr:[1,2,3]};
 let obj2 = Object.assign({},obj1);
 obj2.myArr.push(4)
 console.log(obj1.myArr);
-	//-->[1,2,3,4]
+    //-->[1,2,3,4]
 ```
 **`.entries() / .fromEntries()`**
 
 `.entries()` would convert the key:value pairs of an object into an array that holds [key,value] pairs.
 ```javascript
 const myObj = {
-	key1: "value1",
-	key2: "value2",
-	key3: "value3",
+    key1: "value1",
+    key2: "value2",
+    key3: "value3",
 };
 const entries = Object.entries(myObj);
 console.log(entries);
-	//--> [["key1","value1"],["key2","value2"],["key3","value3"]]
+    //--> [["key1","value1"],["key2","value2"],["key3","value3"]]
 ```
 `.fromEntries()` would convert [key,value] pairs of an array into key:value pairs of an object :
 ```javascript
 const myObj2 = Object.fromEntries(entries);
 console.log(myObj2);
-	//--> {key1:"value1", key2:"value2", key3:"value3"}
+    //--> {key1:"value1", key2:"value2", key3:"value3"}
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Object Enhancements
@@ -479,23 +479,23 @@ let person = {
 [somevar]: "Dev"
 };
 console.log(person);
-	//-->{firstname:"Dev"}
+    //-->{firstname:"Dev"}
 ```
 ### Shorten Object methods
 You can shorten the object methods inside an object:
 ```javascript
 //ES6 and above
 let myObj ={
-	sayHello(){
-		console.log("Hello World");
-	}
+    sayHello(){
+        console.log("Hello World");
+    }
 }
 
 //Before ES6
 var myObj ={
-	sayHello: function(){
-	console.log("Hello World");
-	}
+    sayHello: function(){
+    console.log("Hello World");
+    }
 }
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
@@ -520,21 +520,21 @@ class Person {
 };
 let newPerson = new Person("Dev","Social",7);
 newPerson.multiplyFavoriteNum(10) ;
-	//-->70
+    //-->70
 ```
 ```javascript
 //Same way before ES6
 function Person(firstName, lastName, favoriteNum) { //this is a constructor function
-	this.firstName = firstName;
-	this.lastName = lastName;
-	this.favoriteNum = favoriteNum;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.favoriteNum = favoriteNum;
 }
 Person.prototype.multiplyFavoriteNum = function(num){
-	return num*this.favoriteNum;
+    return num*this.favoriteNum;
 }
 var newPerson = new Person("Dev","Social",7);
 newPerson.multiplyFavoriteNum(10) ;
-	//-->70
+    //-->70
 ```
 ### Static
 
@@ -556,9 +556,9 @@ class Person {
 
 var newPerson = new Person("Dev","Social","blue",7);
 newPerson.callStatic();
-	//-->ERROR
+    //-->ERROR
 Person.callStatic() ;
-	//-->"static has bene called"
+    //-->"static has bene called"
 
 ```
 ### Inheritance
@@ -584,9 +584,9 @@ class Car extends Vehicle{
 };
 var newCar = new Car("Honda","Civic",2019);
 newCar.numWheels;
-	//-->4
+    //-->4
 newCar.start();
-	//-->"Honda Civic ENGINE START"
+    //-->"Honda Civic ENGINE START"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Import/Export
@@ -602,21 +602,21 @@ export sayHi ="Hi";
 ```javascript
 import { sayHello, sayHi } from "./file1.js";
 console.log(sayHello);
-	//-->"Hello"
+    //-->"Hello"
 console.log(sayHi);
-	//-->"Hi"
+    //-->"Hi"
 ```
 You can rename the named imports
 ```javascript
 import { sayHello as Hello, sayHi as Hi } from "./file1.js"
 console.log(Hello);
-	//-->"Hello"
+    //-->"Hello"
 ```
 You can import everything using `*`
 ```javascript
 import * from "./file1.js";
 console.log(sayHello);
-	//-->"Hello"
+    //-->"Hello"
 ```
 **Default export:** You can only export one default object in a `.js` file and then import that object in another `.js` file. However, you don't need curly brackets when importing:
 
@@ -628,7 +628,7 @@ export default sayHello = "HelloWorld";
 ```javascript
 import sayHello from "./file1.js";
 console.log(sayHello);
-	//-->"Hello"
+    //-->"Hello"
 ```
 **Exporting a Class:** Export/import are commonly use to export/import classes:
 
@@ -658,9 +658,9 @@ class Car extends Vehicle{
 }
 var newCar = new Car("Honda","Civic",2019)
 newCar.numWheels
-	//-->4
+    //-->4
 newCar.start()
-	//-->"Honda Civic ENGINE START"
+    //-->"Honda Civic ENGINE START"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Hash map
@@ -754,22 +754,22 @@ More about sets can be found at: [https://developer.mozilla.org/en-US/docs/Web/J
 Define a generator, `yield` in a generator is almost the same to `return`  :
 ```javascript
 function* genValues(){
-	yield "first";
-	yield "second";
-	yield "third";
+    yield "first";
+    yield "second";
+    yield "third";
 };
 let myGen = genValues()
 ```
 Run a generator:
 ```javascript
 myGen.next() //.next() run the gen and return an object
-	//--> {value:"first", done:false}
-myGen.next().value	//.value returns the next gen value
-	//--> "second"
+    //--> {value:"first", done:false}
+myGen.next().value    //.value returns the next gen value
+    //--> "second"
 myGen.next().done //.done returns the status of the gen
-	//--> false
+    //--> false
 myGen.next()
-	//-->{value:undefined, done:true}
+    //-->{value:undefined, done:true}
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Promise
@@ -782,10 +782,10 @@ Asynchronous JavaScript is simply when your code is not sequentially executed at
 console.log("you want this executed first");
 setTimeout(()=>{console.log("you want this executed second")},1000);
 console.log("you want this executed third");
-	//-->"you want this executed first"
-	//-->"you want this executed third"
+    //-->"you want this executed first"
+    //-->"you want this executed third"
 //after 1 sec
-	//-->"you want this executed second"
+    //-->"you want this executed second"
 ```
 With the example above, your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
 ### Promise fundamentals
@@ -795,80 +795,80 @@ A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
 
 ```javascript
 const promiseDoHomework = new Promise(function(resolve,reject) {
-	let isDone = false;
-	if (isDone){
-		setTimeout(function(){
-			resolve("is done");
-		},1000)
-	}else{
-		setTimeout(function(){
-			reject("is not done");
-		},1000)
-	}
+    let isDone = false;
+    if (isDone){
+        setTimeout(function(){
+            resolve("is done");
+        },1000)
+    }else{
+        setTimeout(function(){
+            reject("is not done");
+        },1000)
+    }
 });
 promiseDoHomework.then(function(homeworkResult){
-	console.log("The homework " + homeworkResult);
+    console.log("The homework " + homeworkResult);
 }).catch(function(homeworkResult){
-	console.log("The homework " + homeworkResult);
+    console.log("The homework " + homeworkResult);
 })
-	//-->"The homework is not done"
+    //-->"The homework is not done"
 ```
 
 ### Promise Chain
 A chain of tasks can be sequentially executed. 
 ```javascript
 const doHomework = function(){  
-	return new Promise(function(resolve,reject){
-		setTimeout(function(){
-			resolve("Do Homework, ");
-			console.log("Finished homework")
-		},1000);
-	})  
+    return new Promise(function(resolve,reject){
+        setTimeout(function(){
+            resolve("Do Homework, ");
+            console.log("Finished homework")
+        },1000);
+    })  
 };  
 const haveDinner = function(message){  
-	return new Promise(function(resolve,reject){ 
-		 setTimeout(function(){
-			resolve(message +"then "+ "have dinner, "); 
-			console.log("Finished dinner")
-		},1000);
+    return new Promise(function(resolve,reject){ 
+         setTimeout(function(){
+            resolve(message +"then "+ "have dinner, "); 
+            console.log("Finished dinner")
+        },1000);
 
-	})  
+    })  
 };  
 const takeShower= function(message){  
-	return new Promise(function(resolve,reject){  
-		setTimeout(function(){
-			resolve(message + "then " + "take shower, "); 
-			console.log("Finished shower")
-		},1000);
-	})  
+    return new Promise(function(resolve,reject){  
+        setTimeout(function(){
+            resolve(message + "then " + "take shower, "); 
+            console.log("Finished shower")
+        },1000);
+    })  
 };  
   
 //call doHomework -> haveDinner -> takeShower
 doHomework().then(function(message){  
-	return haveDinner(message);  
+    return haveDinner(message);  
 }).then(function(message){  
-	return takeShower(message);  
+    return takeShower(message);  
 }).then(function(message){  
-	console.log(message,"all finished ")  
+    console.log(message,"all finished ")  
 })  
-	//-->Finished homework
-	//-->Finished dinner
-	//-->Finished shower
-	//-->Do Homework, then have dinner, then take shower,  all finished 
+    //-->Finished homework
+    //-->Finished dinner
+    //-->Finished shower
+    //-->Do Homework, then have dinner, then take shower,  all finished 
 ```
 Call multiple tasks at the same time, only trigger `then` or `catch` when all of the tasks have been fulfilled/rejected:
 ```javascript
 Promise.all([doHomework(),haveDinner(),takeShower()])
-	.then(function(){
-			console.log("all finished");
-		});
+    .then(function(){
+            console.log("all finished");
+        });
 ```
 Call multiple tasks at the same time, trigger `then` or `catch` when one of the tasks has been fulfilled/rejected:
 ```javascript
 Promise.race([doHomework(),haveDinner(),takeShower()])
-	.then(function(){
-			console.log("one finished");
-		});
+    .then(function(){
+            console.log("one finished");
+        });
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 ## Async/await
@@ -876,20 +876,20 @@ Promise.race([doHomework(),haveDinner(),takeShower()])
 The `ansync` keyword that placed before a function makes sure that the function always return a promise:
 ```javascript
 async function myFunc(){
-	return "this is a promise";
+    return "this is a promise";
 }
 myFunc().then((val)=>{console.log(val)});
-	//-->"this is a promise"
+    //-->"this is a promise"
 ```
 ### Await
 The `await` keyword is only used in the `async` function. The `await` keyword makes your code wait until the `Promise` inside the function has been fulfilled/rejected:
 ```javascript
 async function myFunc(){
-	let myPromise = new Promise((resolve,reject)=>{
-		setTimeout(()=>{resolve("done!")},1000)
-	});
-	let result = myPromise.then((val)=>(val));
-	return result;
+    let myPromise = new Promise((resolve,reject)=>{
+        setTimeout(()=>{resolve("done!")},1000)
+    });
+    let result = myPromise.then((val)=>(val));
+    return result;
 }
 myFunc().then((result)=>{console.log(result)})
 
@@ -902,27 +902,27 @@ myFunc().then((result)=>{console.log(result)})
 `finnaly` would execute regardless of `try`  `catch`
 ```javascript
 try{
-	UndefinedFunction(); //this function was not defined
+    UndefinedFunction(); //this function was not defined
 }catch(err){
-	console.log("The error is " + err);
+    console.log("The error is " + err);
 }
-	//-->"The error is ReferenceError"
+    //-->"The error is ReferenceError"
 ```
 ```javascript
 try{
-	let age = 16;
-	if(age >= 18){
-		console.log("You can view the content")
-	}else{
-		throw "You are not 18 to view the content";
-	};
+    let age = 16;
+    if(age >= 18){
+        console.log("You can view the content")
+    }else{
+        throw "You are not 18 to view the content";
+    };
 }catch(err){
-	console.log(err)
+    console.log(err)
 }finally{
-	console.log("Here's the content, you gonna fake your age anyway")
+    console.log("Here's the content, you gonna fake your age anyway")
 }
-	//--> "You are not 18 to view the content"
-	//--> "Here's the content, you gonna fake your age anyway"
+    //--> "You are not 18 to view the content"
+    //--> "Here's the content, you gonna fake your age anyway"
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
 
