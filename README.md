@@ -1,8 +1,8 @@
 
 
-# Es6, Es7, Es8 Cheat Sheet
+# ES6, ES7, ES8, ES9 Cheat Sheet
 
-A complete, simple, easy to use cheat sheet for ES6, ES7, ES8.
+A complete, simple, easy to use cheat sheet for ES6, ES7, ES8. ES9
 Support us at:
 - Website: [http://devsocial.io/](http://devsocial.io/)
 - YouTube: [Devsocial](https://www.youtube.com/channel/UCShL9oRNWYyfrqBuDi6uZpA)
@@ -11,14 +11,16 @@ Support us at:
 
  - [Define variables (const & let)](#define-variables-const--let)
  - [Template Strings](#template-strings)
- - [String.padStart() / String.padEnd()](#template-strings)
+ - [String.padStart() / String.padEnd()](#stringpadstart--stringpadend)
  - [Arrow function](#arrow-function)
  - [Spread Operator](#spread-operator)
  - [Rest Operator](#rest-operator)
  - [Default Parameter](#default-parameter)
  - [Array Destructuring](#array-destructuring)
+ - [New Useful Array Methods](#new-useful-array-methods)
  - [Object Destructuring](#object-destructuring)
  - [Object Enhancements](#object-enhancements)
+ - [New Useful Object Methods](#new-useful-object-methods)
  - [Class](#class)
  - [Import/Export](#importexport)
  - [Hash map](#hash-map)
@@ -26,8 +28,7 @@ Support us at:
  - [Generator](#generator)
  - [Promise](#promise)
  - [Async/await](#asyncawait)
- - [Promise](#promise)
- - [Promise](#promise)
+ - [Handling Errors (try/catch/throw/finally)](#handling-errors-trycatchthrowfinally)
 
 ## Define variables (const & let)
 ### `const`:
@@ -197,7 +198,7 @@ function (para1,para2){
 Arrow function is commonly used in callback:
 ```javascript
  let doubleThenFilter = arr => arr.map(value => (value *2) )
-                                  .filter(value => (value % 3 === 0))
+                                  .filter(value => (value % 3 === 0));
 ```
 ```javascript
 //Same way before ES6
@@ -212,9 +213,9 @@ function doubleThenFilter(arr){
 ## Spread Operator
 A spread operator would break down an array into values so that they can be easily used:
 ```javascript
-let nums = [4,5,6,7,8]
-let nums2 = [1,2,3,...nums,9,10]
-console.log(nums2)
+let nums = [4,5,6,7,8];
+let nums2 = [1,2,3,...nums,9,10];
+console.log(nums2);
 	//--> [1,2,3,4,5,6,7,8,9,10]
 ```
 Spread operator is commonly used when a function doesn’t accept an array as a parameter:
@@ -223,20 +224,20 @@ function sumValues(a,b,c){
  	console.log(arguments);  //print out the arguments of the function
 return a+b+c;
 }
-let nums = [2,3,4]
-sumValues(...nums) //values 2,3,4 of nums array has been passed to a,b,c parameters
+let nums = [2,3,4];
+sumValues(...nums); //values 2,3,4 of nums array has been passed to a,b,c parameters
 	//-->[2,3,4]
 	//-->9
-sumValues(5,5,...nums) //value 2 of nums array has been passed to c parameter
+sumValues(5,5,...nums); //value 2 of nums array has been passed to c parameter
 	//-->[5,5,2,3,4]
 	//-->12
 ```
 ```javascript
 //Another example
-let nums = [1,2,3,4]
-Math.min(nums)
+let nums = [1,2,3,4];
+Math.min(nums);
 	//--> NaN
-Math.min(...nums)
+Math.min(...nums);
 	//-->1
 ```
 ## Rest Operator
@@ -249,7 +250,7 @@ function printRest(a,b,...args){
 	console.log(...args); //...args are values that has been broken down
 }
 //args is just a name, you can name it with anything
-printRest(1,2,3,4,5)
+printRest(1,2,3,4,5);
 	//-->1
 	//-->2
 	//-->[3,4,5]
@@ -259,7 +260,7 @@ printRest(1,2,3,4,5)
 function smallest(...args){
      return "Smallest number is " + Math.min(...args);
 }
-smallest(1,2,3,4,5)
+smallest(1,2,3,4,5);
 	//--> "Smallest number is 1"
 ```
 ## Default Parameter
@@ -269,8 +270,8 @@ Set default value to the parameter:
 function sum(nums) {
 	let total = 0;
 	nums.forEach((d)=>(total+=d));
-	return total
-}
+	return total;
+};
 sum();
 	//-->TypeError
 
@@ -278,19 +279,81 @@ sum();
 function sum(nums =[]) {
 	let total = 0;
 	nums.forEach((d)=>(total+=d));
-	return total
-}
+	return total;
+};
 sum();
 	//-->0
 ```
 ## Array Destructuring
 Assign values from an array to different variables:
 ```javascript
-var arr = [1,2,3]
+var arr = [1,2,3];
 var [a,b,c] = arr;
-console.log(a) //-->1
-console.log(b) //-->2
-console.log(c) //-->3
+console.log(a); //-->1
+console.log(b); //-->2
+console.log(c); //-->3
+```
+## New Useful Array Methods
+The new array methods that would come in handy in ES6,7,8,9.
+
+**`Array.from`** *(Not yet supported by Edge)*
+
+Convert array-like-object into an array.  An array-like-object is an object but looks like an array.
+```javascript
+let myDivs = document.querySelector("div"); //This will return an array-like-object
+let mySet = new Set([1,1,2,2,3,3]); //Set is also an array-like object
+let arrConvert = Array.from(mySet);
+	//--> [1,2,3]
+```
+
+**`.includes()`**
+
+Check if an item exist in an array, return Boolean:
+```javascript
+let myArr = [1,2,3,4,5];
+console.log(myArr.includes(2));
+	//-->true
+```
+**`.flat()`** *(Not yet supported by Edge)*
+
+Flatten a nested array, remove empty spots; then return a new array:
+```javascript
+let myArr = [1,2,,[3,4]];
+myArr.flat();
+	//-->[1,2,3,4]
+let myArr2 = [1,2,[3,4,[5,6]]];
+myArr2.flat();
+	//-->[1,2,3,4,[5,6]];
+```
+You can assign the depth level of `.flat()`:
+```javascript
+let myArr2 = [1,2,[3,4,[5,6]]];
+myArr2.flat(2);
+	//-->[1,2,3,4,5,6];
+myArr2.flat(Infinity); //Infinity would flatten until there's no nested array
+	//-->[1,2,3,4,5,6]
+```
+**`.flatMap()`** *(Not yet supported by Edge)*
+
+An upgrade version of `.map()` in the case that `.map()` return a nested array, `.flatMap()` would flatten it:
+```javascript
+let myArr = [1, 2, 3, 4];
+
+myArr.map(x => [x * 2]); 
+// [[2], [4], [6], [8]]
+
+myArr.flatMap(x => [x * 2]);
+// [2, 4, 6, 8]
+```
+```javascript
+//A more practicle example
+let myArr= ["Javascript is fun", "and", "ES2019 is also fun"];
+
+myArr.map(x => x.split(" "));
+// [["Javascript","is","fun"],["and"],["ES2019", "is", "also", "fun"]]
+
+myArr.flatMap(x => x.split(" "));
+// ["Javascript", "is", "fun", "and", "ES2019", "is", "also", "fun"]
 ```
 ## Object Destructuring
 ### Unpack an object:
@@ -339,6 +402,56 @@ createPerson( { isFun:true } )
 createPerson( { name: { first: "Daniel", last:"N"} }); 
 	//--> ["Daniel", “N”, false]
 ```
+## New Useful Object Methods
+The new object methods that would come in handy in ES6,7,8,9.
+
+**`Object.assign()`**
+
+`Object.assign()` is commonly used to properly clone an object, since you just cannot simply clone an obj by assign the object equal to another object.
+```javascript
+//NOT A WAY OF CLONING AN OBJECT
+let obj1 = {name:"DevSocial"};
+let obj2 = obj1; // this will not clone obj1, but only assign a reference to obj1
+obj2.name = "some text";
+console.log(obj1.name);
+	//-->"some text"
+```
+```javascript
+//BETTER WAY OF CLONING AN OBJECT
+let obj1 =  {name:"DevSocial"}; 
+let obj2 = Object.assign({},obj1);
+obj2.name = "some text";
+console.log(obj1.name);
+	//-->"DevSocial"
+```
+`Object.assign()` however is not a deep clone. If the object's property holds a value of an array, that array still have a reference in the cloned object:
+```javascript
+//NOT A DEEP CLONE
+let obj1 =  {myArr:[1,2,3]}; 
+let obj2 = Object.assign({},obj1);
+obj2.myArr= [4,5,6];
+console.log(obj1.myArr);
+	//-->[4,5,6]
+```
+**`.entries() / .fromEntries()`**
+
+`.entries()` would convert the key:value pairs of an object into an array that holds [key,value] pairs.
+```javascript
+const myObj = {
+	key1: "value1",
+	key2: "value2",
+	key3: "value3",
+};
+const entries = Object.entries(myObj);
+console.log(entries);
+	//--> [["key1","value1"],["key2","value2"],["key3","value3"]]
+```
+`.fromEntries()` would convert [key,value] pairs of an array into key:value pairs of an object :
+```javascript
+const myObj2 = Object.entries(entries );
+console.log(originalObj );
+	//--> {key1:"value1", key2:"value2", key3:"value3"}
+```
 ## Object Enhancements
 ###  Object property as a variable
 You can set a property of an object with the value of a variable:
@@ -350,7 +463,7 @@ let person = {
 console.log(person);
 	//-->{firstname:"Dev"}
 ```
-### Object methods
+### Shorten Object methods
 You can shorten the object methods inside an object:
 ```javascript
 //ES6 and above
@@ -752,4 +865,32 @@ myFunc().then((result)=>{console.log(result)})
 
 ```
 
-## Array
+## Handling Errors (try/catch/throw/finally)
+`try` would test the block of code for errors. The code will run normally until there's an error.
+`catch` would execute in case of there's an error in `try`.
+`throw` allows you to custom your own error
+`finnaly` would execute regardless of `try`  `catch`
+```javascript
+try{
+	UndefinedFunction(); //this function was not defined
+}catch(err){
+	console.log("The error is " + err);
+}
+	//-->"The error is ReferenceError"
+```
+```javascript
+try{
+	let age = 16;
+	if(age >= 18){
+		console.log("You can view the content")
+	}else{
+		throw "You are not 18 to view the content";
+	};
+}catch(err){
+	console.log(err)
+}finally{
+	console.log("Here's the content, you gonna fake your age anyway")
+}
+	//--> "You are not 18 to view the content"
+	//--> "Here's the content, you gonna fake your age anyway"
+```
