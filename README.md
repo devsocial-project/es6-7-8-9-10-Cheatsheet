@@ -738,7 +738,9 @@ Remove all key-value pairs:
 myMap.clear();
 ```
 `.keys()` would return a map iterator of keys
+
 `.values()` would return a map iterator
+
 You can iterate a map iterator using  `for` `of`:
 ```javascript
 for (let [key, value] of myMap) {
