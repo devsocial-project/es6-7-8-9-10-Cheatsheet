@@ -936,9 +936,13 @@ myFunc().then((result)=>{console.log(result)})
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Handling Errors (try/catch/throw/finally)
 `try` would test the block of code for errors. The code will run normally until there's an error.
+
 `catch` would execute in case of there's an error in `try`.
+
 `throw` allows you to custom your own error
+
 `finnaly` would execute regardless of `try`  `catch`
+
 ```javascript
 try{
     UndefinedFunction(); //this function was not defined
