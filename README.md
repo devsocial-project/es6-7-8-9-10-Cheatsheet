@@ -81,10 +81,11 @@ var x = 1
 }
 console.log(x) //-->1
 ```
-let variables cannot be redefined:
+let variables cannot be redefined, but can be reassigned:
 ```javascript
 let variableName = "other value"  
     //-->SyntaxError
+variableName = "other value"
 ```
 ### Hoisting - `var` vs `let`:
 
@@ -117,10 +118,10 @@ for (var i = 0; i < 3; i++) {
      }, 1000);
 };
 //after 1 sec
-    //-->The number is 3  (x3)   
+    //-->The number is 2  (x3)   
 //setTimeout reference i after when the for loop ends
 console.log(i)
-    //--> 3
+    //--> 2
 //i is leaked outside the for loop
 ```
 ```javascript
