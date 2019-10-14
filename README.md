@@ -1,5 +1,3 @@
-
-
 # ES6, ES7, ES8, ES9, ES10 Cheat Sheet
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8, ES9, ES10.
@@ -22,6 +20,7 @@ Support us at:
  - [Object Destructuring](#object-destructuring)
  - [Object Enhancements](#object-enhancements)
  - [New Useful Object Methods](#new-useful-object-methods)
+ -  [For ... of Loop](#for-...-of-loop)
  - [Class](#class)
  - [Import/Export](#importexport)
  - [Hash map](#hash-map)
@@ -136,7 +135,7 @@ for (let i = 0; i < 3; i++) {
     //-->The number is 1
     //-->The number is 2
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Template Strings
 
 Template string is a quick way for you to handle a string.
@@ -153,7 +152,7 @@ console.log(`Hello ${first}${last} ${num1+num2}`);
      //-->"Hello Dev
     //Social"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## String.padStart() / String.padEnd()
 
 > .padStart(), .padEnd() are used to fill up a string to a certain number of characters
@@ -176,7 +175,7 @@ let string = "DevSocial"
 console.log(string.padEnd(maxlength,"a"))
     //-->"DevSocialaaaaaa"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Arrow function
 > Arrow function is a new way of defining a function for cleaner code and is commonly used in callback function
 
@@ -218,7 +217,7 @@ function doubleThenFilter(arr){
     })
 };
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Spread Operator
 A spread operator would break down an array into values so that they can be easily used:
 ```javascript
@@ -249,7 +248,7 @@ Math.min(nums);
 Math.min(...nums);
     //-->1
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Rest Operator
 Rest operator is commonly used in a function when you don’t know the number of input arguments passed into the function:
 ```javascript
@@ -273,7 +272,7 @@ function smallest(...args){
 smallest(1,2,3,4,5);
     //--> "Smallest number is 1"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Default Parameter
 Set default value to the parameter:
 ```javascript
@@ -295,7 +294,7 @@ function sum(nums =[]) {
 sum();
     //-->0
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Array Destructuring
 Assign values from an array to different variables:
 ```javascript
@@ -305,7 +304,7 @@ console.log(a); //-->1
 console.log(b); //-->2
 console.log(c); //-->3
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## New Useful Array Methods
 The new array methods that would come in handy in ES6,7,8,9.
 
@@ -368,7 +367,7 @@ myArr.map(x => x.split(" "));
 myArr.flatMap(x => x.split(" "));
 // ["Javascript", "is", "fun", "and", "ES2019", "is", "also", "fun"]
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Object Destructuring
 ### Unpack an object:
 Variable with the same names as properties:
@@ -418,7 +417,7 @@ createPerson({ isFun:true });
 createPerson({name:{ first: "Dev", last:"Social"}}); 
     //--> ["Dev", “Social”, false]
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## New Useful Object Methods
 The new object methods that would come in handy in ES6,7,8,9.
 
@@ -469,7 +468,7 @@ const myObj2 = Object.fromEntries(entries);
 console.log(myObj2);
     //--> {key1:"value1", key2:"value2", key3:"value3"}
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Object Enhancements
 ###  Object property as a variable
 You can set a property of an object with the value of a variable:
@@ -499,6 +498,46 @@ var myObj ={
 }
 ```
 [↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+
+## For ... of Loop
+A `for` `of` loop introduce a simpler way to iterate the values of  a iterable object (a string, an array, a set, a map, a generator, or a DOM collection). 
+```javascript
+let myArr =[1,2,3];
+for (let num of myArr){
+    console.log(num)
+}
+    //-->1
+    //-->2
+    //-->3
+
+let myStr = "Hello"
+for (let ch of myStr){
+    console.log(ch)
+}
+```
+
+`for` `of` is only designed for iterating the value of an iterable object, not for updating it:
+```javascript
+let myArr =[1,2,3];
+for (let num of myArr){
+    num +=1;
+};
+console.log(myArr);
+    //-->[1,2,3]
+// myArr was not updated
+// If you want to update it, you need to use a temporary object to store the value
+let tempArr = [];
+for (let num of myArr){
+    num +=1;
+    tempArr.push(num);
+};
+myArr = tempArr;
+console.log(myArr);
+    //-->[2,3,4]
+```
+More about iteration with other iterable objects can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Class
 > Class in ES6 or above is a combination of constructor functions and prototypes in ES5 that make Object Oriented Programing in Javascript more clean and readable
 
@@ -588,7 +627,7 @@ newCar.numWheels;
 newCar.start();
     //-->"Honda Civic ENGINE START"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Import/Export
 
 **Named export:** You can export an object or objects in a .js file and then import that object to another .js file:
@@ -662,7 +701,7 @@ newCar.numWheels
 newCar.start()
     //-->"Honda Civic ENGINE START"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Hash map
 
 > Hash map is an object that contains key-value pairs. Any value (including array, object, Boolean, number, function)  can be used as a key or a value. A Hash map stores the insertion orders.
@@ -714,7 +753,7 @@ for (let value of myMap.values()) {
 ```
 More about hash map can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Sets
 
 > A set is a collection of unique values. A set is not an ordered abstract data structure, which means you cannot sort a set or order doesn't matter.
@@ -746,7 +785,7 @@ mySet.delete(3);
 ```
 More about sets can be found at: [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
 
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Generator
 
 > A Generator is like a function, however, it can be paused and continue
@@ -771,7 +810,7 @@ myGen.next().done //.done returns the status of the gen
 myGen.next()
     //-->{value:undefined, done:true}
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Promise
 
 > The **`Promise`** object represents the eventual completion (or failure) of an asynchronous call, and its resulting value.
@@ -870,7 +909,7 @@ Promise.race([doHomework(),haveDinner(),takeShower()])
             console.log("one finished");
         });
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Async/await
 ### Async
 The `ansync` keyword that placed before a function makes sure that the function always return a promise:
@@ -894,16 +933,12 @@ async function myFunc(){
 myFunc().then((result)=>{console.log(result)})
 
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Handling Errors (try/catch/throw/finally)
 `try` would test the block of code for errors. The code will run normally until there's an error.
-
 `catch` would execute in case of there's an error in `try`.
-
 `throw` allows you to custom your own error
-
 `finnaly` would execute regardless of `try`  `catch`
-
 ```javascript
 try{
     UndefinedFunction(); //this function was not defined
@@ -928,7 +963,7 @@ try{
     //--> "You are not 18 to view the content"
     //--> "Here's the content, you gonna fake your age anyway"
 ```
-[↑ Back to top](#es6-es7-es8-es9-cheat-sheet)
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 
 ## License
 **Released under MIT License**
