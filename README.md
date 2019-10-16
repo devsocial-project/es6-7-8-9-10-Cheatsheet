@@ -200,23 +200,23 @@ console.log(string.padEnd(maxlength,"a"))
 
 Define an arrow function with `return`:
 ```javascript
-let functionName = (para1,para2) => { 
-     sum = para1+para2;
+let functionName = (param1,param2) => { 
+     sum = param1+param2;
      return sum; 
 }    
 ```
 Define an arrow function without `return`:
 ```javascript
-let functionName = (para1, para2) => (para1 + para2) ;  
+let functionName = (param1, param2) => (param1 + param2) ;  
 ```
 If there is no parameter, you can just use parentheses:
 ```javascript
-let functionName = () => (para1 + para2);  
+let functionName = () => (param1 + param2);  
 ```
 ```javascript
 //Same way before ES6
-function (para1,para2){
-     return para1+para2;
+function functionName(param1,param2){
+     return param1+param2;
 }
 ```
 Arrow function is commonly used in callback:
