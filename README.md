@@ -153,6 +153,13 @@ console.log(`Hello ${first}${last} ${num1+num2}`);
      //-->"Hello Dev
     //Social"
 ```
+```javascript
+//More practical example
+
+let channel_name = "desocial";
+let base_url = "https://www.youtube.com/"
+let url = `${base_url}channel/${channel_name}/`
+```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## String.padStart() / String.padEnd()
 
