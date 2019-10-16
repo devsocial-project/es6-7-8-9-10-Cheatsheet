@@ -211,7 +211,7 @@ let functionName = (param1, param2) => (param1 + param2) ;
 ```
 If there is no parameter, you can just use parentheses:
 ```javascript
-let functionName = () => (param1 + param2);  
+let functionName = () => ("Hello world");  
 ```
 ```javascript
 //Same way before ES6
