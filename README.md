@@ -138,20 +138,30 @@ for (let i = 0; i < 3; i++) {
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Template Strings
-
 Template string is a quick way for you to handle a string.
-You can reference variable, do math inside a template string:
+
+You can reference variables:
 ```javascript
 let first = "Dev";
 let last = "Social";
+
+console.log(`Hello ${first}${last}`); 
+     //-->  "Hello DevSocial"
+```
+You can use expression (i.e adding numbers):
+```javascript
+//More practical example
 let num1 = 2;
 let num2 = 3;
-console.log(`Hello ${first}${last} ${num1+num2}`); 
-     //-->  "Hello DevSocial 5"
- console.log(`Hello ${first}
- ${last}`); 
-     //-->"Hello Dev
-    //Social"
+console.log(`The number is ${num1+num2}`); 
+     //-->  "The number is 5"
+```
+You can just break a line, use tab without using `\n` `\t `:
+```javascript
+console.log(`Hello
+World`)
+    //-->"Hello
+    //World"
 ```
 ```javascript
 //More practical example
@@ -160,7 +170,6 @@ let channel_name = "desocial";
 let base_url = "https://www.youtube.com/"
 let url = `${base_url}channel/${channel_name}/`
     //-->"https://www.youtube.com/channel/desocial"
-```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## String.padStart() / String.padEnd()
 
