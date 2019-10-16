@@ -159,6 +159,7 @@ console.log(`Hello ${first}${last} ${num1+num2}`);
 let channel_name = "desocial";
 let base_url = "https://www.youtube.com/"
 let url = `${base_url}channel/${channel_name}/`
+    //-->"https://www.youtube.com/channel/desocial"
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## String.padStart() / String.padEnd()
