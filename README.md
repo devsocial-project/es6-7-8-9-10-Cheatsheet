@@ -17,7 +17,7 @@ Support us at:
  - [Rest Operator](#rest-operator)
  - [Default Parameter](#default-parameter)
  - [Array Destructuring](#array-destructuring)
- - [New Useful Array Methods](#new-useful-array-methods)
+ - [New Useful Array Methods(.from(), .include(), .flat(), . flatMap()](#new-useful-array-methods)
  - [Object Destructuring](#object-destructuring)
  - [Object Enhancements](#object-enhancements)
  - [New Useful Object Methods](#new-useful-object-methods)
