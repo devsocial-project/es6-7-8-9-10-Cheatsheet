@@ -1,3 +1,4 @@
+
 # ES6, ES7, ES8, ES9, ES10 Cheat Sheet
 
 A complete, simple, easy to use cheat sheet for ES6, ES7, ES8, ES9, ES10.
@@ -389,33 +390,48 @@ myArr.flatMap(x => x.split(" "));
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Object Destructuring
 ### Unpack an object:
-Variable with the same names as properties:
+Define and assign value to variables with the same names as properties:
 ```javascript
-var person = {
+const person = {
      first:"Dev",
      last: "Social",
 }
 //define and assign value to variables with the same name as properties in the object
-var { first, last } = person;
+let { first, last } = person;
 console.log(first)
     //-->"Dev"
 console.log(last)
     //-->"Social"
 
 ```
-Variables with different names from properties:
+Define and assign value to variables with different names from properties:
 ```javascript
-var person = {
-     old:"Dev",
+const person = {
+     first:"Dev",
      last: "Social",
 }
 //define and assign values to variables with different names from properties in the object
-var { first:differentFirst, last:differentLast} = person;    
+let { first:differentFirst, last:differentLast} = person;    
 console.log(differentFirst) 
     //-->"Dev"
 console.log(differentLast) 
     //-->"Social"
 
+```
+Define and assign value to variables and exclude unwanted variables using spread operator:
+```javascript
+const person = {
+    first:"Dev",
+    last:"Social",
+    city:"L.A",
+    state:"CA",
+    country:"USA",
+};
+const { state, ...personWithoutState } = person;
+console.log(state);
+    //-->"CA"
+console.log(personWithoutState);
+    //-->{first: "Dev", last: "Social", city: "L.A", country: "USA"}
 ```
 ### Object Destructuring Default Parameters:
 You can assign default parameter value as a destructured object 
@@ -992,7 +1008,9 @@ try{
 
 ## License
 **Released under MIT License**
+
 Copyright (c) 2019 DevSocial.
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
