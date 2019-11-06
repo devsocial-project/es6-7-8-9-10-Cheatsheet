@@ -406,14 +406,14 @@ console.log(last)
 Variables with different names from properties:
 ```javascript
 var person = {
-     first:"Dev",
+     old:"Dev",
      last: "Social",
 }
 //define and assign values to variables with different names from properties in the object
-var { first:newFirst, last:newLast} = person;    
-console.log(newFirst) 
+var { first:differentFirst, last:differentLast} = person;    
+console.log(differentFirst) 
     //-->"Dev"
-console.log(newLast) 
+console.log(differentLast) 
     //-->"Social"
 
 ```
