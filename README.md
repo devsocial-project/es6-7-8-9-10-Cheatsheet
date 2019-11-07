@@ -968,9 +968,9 @@ async function myFunc(){
         setTimeout(()=>{resolve("done!")},1000)
     });
     let result = await myPromise;
-    return result;
+    console.log(result);
 }
-myFunc().then((result)=>{console.log(result)})
+myFunc()
 
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
