@@ -867,7 +867,7 @@ console.log("you want this executed third");
 With the example above, your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
 ### Promise fundamentals
 A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
- - `resovle` means that the promise has been fulfilled, and `then` is executed. `resovle` is almost the same to the way `return` works
+ - `resolve` means that the promise has been fulfilled, and `then` is executed. `resolve` is almost the same to the way `return` works
  - `reject` means that the promise has not been fulfilled, and `catch` is executed. `reject` is almost the same to the way `return` works
 
 ```javascript
