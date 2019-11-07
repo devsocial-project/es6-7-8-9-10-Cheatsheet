@@ -967,7 +967,7 @@ async function myFunc(){
     let myPromise = new Promise((resolve,reject)=>{
         setTimeout(()=>{resolve("done!")},1000)
     });
-    let result = await myPromise;
+    let result = await myPromise; //wait for myPromise before continuing 
     console.log(result);
 }
 myFunc()
