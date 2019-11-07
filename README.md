@@ -592,6 +592,7 @@ class Person {
           return num * this.favoriteNum;
      }
 };
+//Create an object from the class using the new keyword.
 let newPerson = new Person("Dev","Social",7);
 newPerson.multiplyFavoriteNum(10) ;
     //-->70
