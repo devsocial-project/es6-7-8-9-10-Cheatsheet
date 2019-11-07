@@ -775,7 +775,7 @@ myMap.clear();
 ```
 `.keys()` would return a map iterator of keys
 
-`.values()` would return a map iterator
+`.values()` would return a map iterator of values
 
 You can iterate a map iterator using  `for` `of`:
 ```javascript
