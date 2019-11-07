@@ -21,7 +21,7 @@ Support us at:
  - [Object Destructuring](#object-destructuring)
  - [New Useful Object Methods(Object.assign(), .entries(), .fromEntries())](#new-useful-object-methods)
  - [Object Enhancements - Better way to handle an object](#object-enhancements)
- -  [For ... of Loop](#for-...-of-loop)
+ -  [For ... of Loop](#for--of-loop)
  - [Class](#class)
  - [Import/Export](#importexport)
  - [Hash map](#hash-map)
