@@ -653,7 +653,7 @@ class Vehicle{
 
 class Car extends Vehicle{
     constructor(make,model,year,numWheels){
-        super(make,model,year);   //inherit make,model,year from Vehicle
+        super(make,model,year);   //referes to make,model,year from Vehicle
         this.numWheels = 4;
     }
 };
