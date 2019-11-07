@@ -874,10 +874,12 @@ A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
 const promiseDoHomework = new Promise(function(resolve,reject) {
     let isDone = false;
     if (isDone){
+        console.log("Promise is processing");
         setTimeout(function(){
             resolve("is done");
         },1000)
     }else{
+        console.log("Promise is processing");
         setTimeout(function(){
             reject("is not done");
         },1000)
