@@ -981,7 +981,7 @@ myFunc()
 
 `throw` allows you to custom your own error
 
-`finnaly` would execute regardless of `try`  `catch`
+`finally` would execute regardless of `try`  `catch`
 
 ```javascript
 try{
