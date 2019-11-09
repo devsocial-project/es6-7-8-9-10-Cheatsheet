@@ -17,11 +17,11 @@ Support us at:
  - [Rest Operator](#rest-operator)
  - [Default Parameter](#default-parameter)
  - [Array Destructuring](#array-destructuring)
- - [New Useful Array Methods(Array.from(), .include(), .flat(), .flatMap())](#new-useful-array-methods)
+ - [New Useful Array Methods](#new-useful-array-methods)
  - [Object Destructuring](#object-destructuring)
- - [New Useful Object Methods(Object.assign(), .entries(), .fromEntries())](#new-useful-object-methods)
- - [Object Enhancements - Better way to handle an object](#object-enhancements)
- -  [For ... of Loop](#for--of-loop)
+ - [Object Enhancements](#object-enhancements)
+ - [New Useful Object Methods](#new-useful-object-methods)
+ -  [For ... of Loop](#for-...-of-loop)
  - [Class](#class)
  - [Import/Export](#importexport)
  - [Hash map](#hash-map)
@@ -592,7 +592,6 @@ class Person {
           return num * this.favoriteNum;
      }
 };
-//Create an object from the class using the new keyword.
 let newPerson = new Person("Dev","Social",7);
 newPerson.multiplyFavoriteNum(10) ;
     //-->70
@@ -653,7 +652,7 @@ class Vehicle{
 
 class Car extends Vehicle{
     constructor(make,model,year,numWheels){
-        super(make,model,year);   //referes to make,model,year from Vehicle
+        super(make,model,year);   //inherit make,model,year from Vehicle
         this.numWheels = 4;
     }
 };
@@ -775,7 +774,7 @@ myMap.clear();
 ```
 `.keys()` would return a map iterator of keys
 
-`.values()` would return a map iterator of values
+`.values()` would return a map iterator
 
 You can iterate a map iterator using  `for` `of`:
 ```javascript
@@ -867,25 +866,23 @@ console.log("you want this executed third");
 With the example above, your code doesn't wait for `setTimeout`,  however,  you want your code to wait for that `setTimeout` before continuing, that's why you need `Promise`
 ### Promise fundamentals
 A `Promise` has 4 main keywords: `resolve`, `then`, `reject`,`catch`:
- - `resolve` means that the promise has been fulfilled, and `then` is executed. `resolve` is almost the same to the way `return` works
+ - `resovle` means that the promise has been fulfilled, and `then` is executed. `resovle` is almost the same to the way `return` works
  - `reject` means that the promise has not been fulfilled, and `catch` is executed. `reject` is almost the same to the way `return` works
 
 ```javascript
-const promiseDoHomework = new Promise(function(resolve,reject) {
+const doHomework = new Promise(function(resolve,reject) {
     let isDone = false;
     if (isDone){
-        console.log("Promise is processing");
         setTimeout(function(){
             resolve("is done");
         },1000)
     }else{
-        console.log("Promise is processing");
         setTimeout(function(){
             reject("is not done");
         },1000)
     }
 });
-promiseDoHomework.then(function(homeworkResult){
+doHomework.then(function(homeworkResult){
     console.log("The homework " + homeworkResult);
 }).catch(function(homeworkResult){
     console.log("The homework " + homeworkResult);
@@ -935,14 +932,14 @@ doHomework().then(function(message){
     //-->Finished shower
     //-->Do Homework, then have dinner, then take shower,  all finished 
 ```
-Call multiple tasks at the same time, only trigger `then` or `catch` when all of the tasks have been fulfilled/rejected:
+`Promise.all`: Call multiple tasks at the same time, only trigger `then` or `catch` when all of the tasks have been fulfilled/rejected:
 ```javascript
 Promise.all([doHomework(),haveDinner(),takeShower()])
     .then(function(){
             console.log("all finished");
         });
 ```
-Call multiple tasks at the same time, trigger `then` or `catch` when one of the tasks has been fulfilled/rejected:
+`Promise.race`: Call multiple tasks at the same time, trigger `then` or `catch` when one of the tasks has been fulfilled/rejected:
 ```javascript
 Promise.race([doHomework(),haveDinner(),takeShower()])
     .then(function(){
@@ -950,39 +947,10 @@ Promise.race([doHomework(),haveDinner(),takeShower()])
         });
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
-## Async/await
-### Async
-The `ansync` keyword that placed before a function makes sure that the function always return a promise:
-```javascript
-async function myFunc(){
-    return "this is a promise";
-}
-myFunc().then((val)=>{console.log(val)});
-    //-->"this is a promise"
-```
-### Await
-The `await` keyword is only used in the `async` function. The `await` keyword makes your code wait until the `Promise` inside the function has been fulfilled/rejected:
-```javascript
-async function myFunc(){
-    let myPromise = new Promise((resolve,reject)=>{
-        setTimeout(()=>{resolve("done!")},1000)
-    });
-    let result = await myPromise; //wait for myPromise before continuing 
-    console.log(result);
-}
-myFunc()
-
-```
-[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 ## Handling Errors (try/catch/throw/finally)
 `try` would test the block of code for errors. The code will run normally until there's an error.
 
 `catch` would execute in case of there's an error in `try`.
-
-`throw` allows you to custom your own error
-
-`finally` would execute regardless of `try`  `catch`
-
 ```javascript
 try{
     UndefinedFunction(); //this function was not defined
@@ -991,6 +959,24 @@ try{
 }
     //-->"The error is ReferenceError"
 ```
+`throw` allows you to raise a default error supported by the browser with your own message, or raise your own customized error. 
+
+The default errors are: `EvalError`, `RangeError`, `ReferenceError`, `SyntaxError`, `TypeError`, `URIError`.
+
+You can use an `if` statement in `catch` block to check for a specific error.
+```javascript
+try{
+    throw new ReferenceError("This is a customized ReferenceError")
+}catch(err){
+	if(err instanceof ReferenceError){
+        console.log("This code run when there is a ReferenceError"); 
+    }else{
+        console.log("This code run when there is any other errors");
+    }
+ };
+     //-->"This code run when there is a ReferenceError"
+```
+`finnaly` would execute regardless of `try`  `catch`
 ```javascript
 try{
     let age = 16;
@@ -1008,6 +994,49 @@ try{
     //--> "Here's the content, you gonna fake your age anyway"
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
+
+## Async/await
+### Async
+The `ansync` keyword that placed before a function makes that the function behave like a `Promise`:
+```javascript
+async function myFunc(){
+    return "this is a promise";
+}
+myFunc().then((val)=>{console.log(val)});
+    //-->"this is a promise"
+```
+In an `async` function, the `return` keyword will act like the `resolve` keyword in a `Promise`, the `throw` keyword will act like the `reject` keyword in a `Promise`
+```javascript
+async function doHomework(){
+    let isDone = false;
+    if (isDone){
+        return("is done");
+    }else{
+        throw "is not done";
+    }
+}
+doHomework().then(function(homeworkResult){
+    console.log("The homework " + homeworkResult);
+}).catch(function(homeworkResult){
+    console.log("The homework " + homeworkResult);
+})
+    //"The homework is not done"
+```
+### Await
+The `await` keyword is ONLY used in the `async` function. The `await` keyword makes your code wait until the `Promise` inside the function has been fulfilled/rejected:
+```javascript
+async function myFunc(){
+    let myPromise = new Promise((resolve,reject)=>{
+        setTimeout(()=>{resolve("done!")},1000)
+    });
+    let result = await myPromise; //wait for this promise before continuing
+    return result;
+}
+myFunc().then((result)=>{console.log(result)})
+
+```
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
+
 
 ## License
 **Released under MIT License**
