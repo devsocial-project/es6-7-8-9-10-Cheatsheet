@@ -27,9 +27,10 @@ Support us at:
  - [Hash map](#hash-map)
  - [Sets](#sets)
  - [Generator](#generator)
+ - [Handling Errors (try/catch/throw/finally)](#handling-errors-trycatchthrowfinally)
  - [Promise](#promise)
  - [Async/await](#asyncawait)
- - [Handling Errors (try/catch/throw/finally)](#handling-errors-trycatchthrowfinally)
+
 
 ## Define variables (const & let)
 ### `const`:
@@ -848,6 +849,54 @@ myGen.next()
     //-->{value:undefined, done:true}
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
+## Handling Errors (try/catch/throw/finally)
+`try` would test the block of code for errors. The code will run normally until there's an error.
+
+`catch` would execute in case of there's an error in `try`.
+```javascript
+try{
+    UndefinedFunction(); //this function was not defined
+}catch(err){
+    console.log("The error is " + err);
+}
+    //-->"The error is ReferenceError"
+```
+`throw` allows you to raise a default error supported by the browser with your own message, or raise your own customized error. 
+
+The default errors are: `EvalError`, `RangeError`, `ReferenceError`, `SyntaxError`, `TypeError`, `URIError`.
+
+You can use an `if` statement in `catch` block to check for a specific error.
+```javascript
+try{
+    throw new ReferenceError("This is a customized ReferenceError")
+}catch(err){
+	if(err instanceof ReferenceError){
+        console.log("This code run when there is a ReferenceError"); 
+    }else{
+        console.log("This code run when there is any other errors");
+    }
+ };
+     //-->"This code run when there is a ReferenceError"
+```
+`finnaly` would execute regardless of `try`  `catch`
+```javascript
+try{
+    let age = 16;
+    if(age >= 18){
+        console.log("You can view the content")
+    }else{
+        throw "You are not 18 to view the content";
+    };
+}catch(err){
+    console.log(err)
+}finally{
+    console.log("Here's the content, you gonna fake your age anyway")
+}
+    //--> "You are not 18 to view the content"
+    //--> "Here's the content, you gonna fake your age anyway"
+```
+[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
+
 ## Promise
 
 > The **`Promise`** object represents the eventual completion (or failure) of an asynchronous call, and its resulting value.
@@ -945,53 +994,6 @@ Promise.race([doHomework(),haveDinner(),takeShower()])
     .then(function(){
             console.log("one finished");
         });
-```
-[↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
-## Handling Errors (try/catch/throw/finally)
-`try` would test the block of code for errors. The code will run normally until there's an error.
-
-`catch` would execute in case of there's an error in `try`.
-```javascript
-try{
-    UndefinedFunction(); //this function was not defined
-}catch(err){
-    console.log("The error is " + err);
-}
-    //-->"The error is ReferenceError"
-```
-`throw` allows you to raise a default error supported by the browser with your own message, or raise your own customized error. 
-
-The default errors are: `EvalError`, `RangeError`, `ReferenceError`, `SyntaxError`, `TypeError`, `URIError`.
-
-You can use an `if` statement in `catch` block to check for a specific error.
-```javascript
-try{
-    throw new ReferenceError("This is a customized ReferenceError")
-}catch(err){
-	if(err instanceof ReferenceError){
-        console.log("This code run when there is a ReferenceError"); 
-    }else{
-        console.log("This code run when there is any other errors");
-    }
- };
-     //-->"This code run when there is a ReferenceError"
-```
-`finnaly` would execute regardless of `try`  `catch`
-```javascript
-try{
-    let age = 16;
-    if(age >= 18){
-        console.log("You can view the content")
-    }else{
-        throw "You are not 18 to view the content";
-    };
-}catch(err){
-    console.log(err)
-}finally{
-    console.log("Here's the content, you gonna fake your age anyway")
-}
-    //--> "You are not 18 to view the content"
-    //--> "Here's the content, you gonna fake your age anyway"
 ```
 [↑ Back to top](#es6-es7-es8-es9-es10-cheat-sheet)
 
